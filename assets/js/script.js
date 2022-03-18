@@ -32,6 +32,8 @@ var startQuiz = document.querySelector("#start")
 var quizArea = document.querySelector("#quiz")
 var QI = 0
 var qList = document.createElement("ul")
+var timeDeduct = 5
+
 
 timer.textContent = "Time Remaining: " + timeRemaining
 
@@ -50,6 +52,7 @@ startQuiz.addEventListener("click", function() {
 
 var Quiz = function() {
     quizArea.innerHTML = ""
+    qList.innerHTML = ""
 
     for (i = 0; i < questions.length; i++) {
         var currentQuestion = questions[QI].question
@@ -65,5 +68,69 @@ var Quiz = function() {
     })
 }
 function validate(event) {
+    var element = event.target
+
+    if (element.matches("li")) {
+        var result = document.createElement("div")
+        result.setAttribute("id", "result")
+        if (element.textContent == questions[QI].answer){
+            result.textContent = "Correct! The answer is: " + questions[QI].answer
+        } else {
+            timeRemaining = timeRemaining - timeDeduct
+            result.textContent = "Wrong! The correct answer is: " + questions[QI].answer
+        }
+
+    }
+
+    QI++
+
+    if (QI < questions.length) {
+        Quiz(QI)
+    } else {
+
+        result.textContent = "The quiz is done! You finished with " + timeRemaining + " seconds remaining"
+    }
+    quizArea.appendChild(result)
+}
+
+function endQuiz() {
+    quizArea.innerHTML= ""
+
+    var createH1 = document.createElement("h1")
+    createH1.setAttribute("id", "createH1")
+    createH1.textContent = "You finished!"
+
+    quizArea.appendChild(createH1)
+
+    var createP = document.createElement("p")
+    createP.setAttribute("createP")
+
+    quizArea.appendChild(createP)
+
+    if (timeRemaining > 0) {
+        var score = timeRemaining
+        clearInterval()        
+    }
+
+    createLabel = document.createElement("label")
+    createLabel.setAttribute("id", "createLabel")
+    createLabel.textContent = "Enter your initials"
+
+    quizArea.appendChild(createLabel)
+
+    var createInput = document.createElement("input")
+    createInput.setAttribute("type", "text")
+    createInput.setAttribute("id", "initials")
+    createInput.textContent = ""
+
+    quizArea.appendChild(createInput)
+
+    var createSubmit = document.createElement("button")
+    createSubmit.setAttribute("type", "submit")
+    createSubmit.setAttribute("id", "submit")
+    createSubmit.textContent = "Submit"
+    
+    quizArea.appendChild(createSubmit)
+
     
 }
