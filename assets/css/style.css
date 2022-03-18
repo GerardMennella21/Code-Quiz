@@ -27,7 +27,10 @@ main {
     border: 5px dotted palegoldenrod;
     border-radius: 25%;
     padding: 10%;
-    margin: 2%
+    margin: 2%;
+    color: palegoldenrod;
+    display: flex;
+    flex-direction: column;
 }
 button {
     background-color: steelblue;
@@ -43,10 +46,11 @@ button:hover {
 }
 ul li {
     color: palegoldenrod;
-    border: 3px dotted
+    border: 3px dotted palegoldenrod;
+    display: flex;  
 }
 ul {
     display: flex;
-    
+    flex-direction: column;
     list-style: none;
 }
