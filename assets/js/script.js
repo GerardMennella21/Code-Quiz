@@ -25,3 +25,45 @@ var questions = [
         answer: "The bottom"
     }
 ]
+
+var timer = document.querySelector("#Timer")
+var timeRemaining = 75
+var startQuiz = document.querySelector("#start")
+var quizArea = document.querySelector("#quiz")
+var QI = 0
+var qList = document.createElement("ul")
+
+timer.textContent = "Time Remaining: " + timeRemaining
+
+startQuiz.addEventListener("click", function() {
+    setInterval( function() {
+        if (timeRemaining > 0) {
+            timeRemaining--
+            timer.textContent = "Time Remaining: " + timeRemaining
+        }
+        else {
+            clearInterval
+        }
+    }, 1000)
+    Quiz()
+})
+
+var Quiz = function() {
+    quizArea.innerHTML = ""
+
+    for (i = 0; i < questions.length; i++) {
+        var currentQuestion = questions[QI].question
+        var currentOptions = questions[QI].options
+        quizArea.textContent = currentQuestion
+    }
+    currentOptions.forEach (function (newQ) {
+        var qlItem = document.createElement("li")
+        qlItem.textContent = newQ
+        quizArea.appendChild(qList)
+        qList.appendChild(qlItem)
+        qlItem.addEventListener("click", validate)
+    })
+}
+function validate(event) {
+    
+}

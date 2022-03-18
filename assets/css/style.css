@@ -10,7 +10,7 @@ header {
     align-items: center;
     border: 3px dotted palegoldenrod;
     flex-direction: column;
-    margin: 0 30%;
+    margin: 2% 30%;
     padding: 0 5%;
     border-radius: 50%;
     background-color: steelblue;
@@ -21,10 +21,32 @@ header h1 {
 }
 header:hover {
     background-color: blueviolet;
+    cursor: pointer;
+}
+main {
+    border: 5px dotted palegoldenrod;
+    border-radius: 25%;
+    padding: 10%;
+    margin: 2%
 }
 button {
     background-color: steelblue;
     border-radius: 30%;
     border: none;
-
+    padding: 30px;
+    border: 3px dotted palegoldenrod;
+    flex-direction: column;
+}
+button:hover {
+    background-color: blueviolet;
+    cursor: pointer;
+}
+ul li {
+    color: palegoldenrod;
+    border: 3px dotted
+}
+ul {
+    display: flex;
+    
+    list-style: none;
 }
