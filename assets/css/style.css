@@ -1,3 +1,11 @@
+/*Frequent Styles*/
+:root {
+    --PG: palegoldenrod;
+    --SB: steelblue;
+    --B: 2px dotted var(--PG);
+}
+
+/*Body Styles*/
 body {
     background-color: yellowgreen;
     display: flex;
@@ -5,57 +13,93 @@ body {
     align-items: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+/*End Body Styles*/
+
+/*Header Styles*/
 header {
     display: flex;
     align-items: center;
-    border: 3px dotted palegoldenrod;
+    border: var(--B);
     flex-direction: column;
     margin: 2% 30%;
     padding: 0 5%;
     border-radius: 50%;
-    background-color: steelblue;
+    background-color: var(--SB);
+    text-align: center;
 }
 header h1 {
     font-size: 35px;
-    color:palegoldenrod ;
+    color:var(--PG) ;
 }
 header:hover {
     background-color: blueviolet;
     cursor: pointer;
 }
+/*End Header Styles*/
+
+/*Timer Styles*/
+#Timer {
+    color: var(--PG);
+    background-color: var(--SB);
+    font-size: 22px;
+    border: var(--B);
+    border-radius: 40%;
+    padding: 10px;
+}
+/*End Timer Styles*/
+
+/*Quiz Area Main Styles*/
 main {
-    border: 5px dotted palegoldenrod;
+    border: 5px dotted var(--PG);
     border-radius: 25%;
     padding: 10%;
     margin: 2%;
-    color: palegoldenrod;
+    color: var(--PG);
     display: flex;
     flex-direction: column;
     font-size: 25px;
     text-align: center;
 }
+/*End Quiz Area Main Styles*/
+
+/*Quiz Area Button Styles*/
 button {
-    background-color: steelblue;
+    background-color: var(--SB);
     border-radius: 30%;
     border: none;
     padding: 30px;
-    border: 3px dotted palegoldenrod;
+    border: var(--B);
     flex-direction: column;
 }
 button:hover {
     background-color: blueviolet;
     cursor: pointer;
 }
+/*End Quiz Area Button Styles*/
+
+/*Quiz Area Q&A Styles*/
+main h2 {
+    border: var(--B);
+    background-color: var(--SB);
+    padding: 4%;
+    border-radius: 35%;
+}
+#result {
+    border: var(--B);
+    background-color: var(--SB);
+    padding: 2%;
+    border-radius: 35%;
+}
 ul li:hover {
     background-color: blueviolet;
     cursor: pointer;
 }
 ul li {
-    color: palegoldenrod;
-    border: 3px dotted palegoldenrod;
+    color: var(--PG);
+    border: var(--B);
     display: flex;
     margin: 2%;
-    background-color: steelblue;
+    background-color: var(--SB);
     border-radius: 5%;
     padding: 3%;
 }
@@ -63,3 +107,14 @@ ul {
     display: flex;
     list-style: none;
 }
+/*End Quiz Area Question Styles*/
+
+/*Quiz Done Styles*/
+#submit {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: var(--PG);
+    align-items: center;
+    font-size: 18px;
+}
+/*End Quiz Done Styles*/

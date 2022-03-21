@@ -33,23 +33,35 @@ var quizArea = document.querySelector("#quiz")
 var QI = 0
 var qList = document.createElement("ul")
 var timeDeduct = 5
+var scoreDisplay = document.querySelector("#highScore")
+var highScore = localStorage.getItem("highScore")
+var initials = localStorage.getItem("initials")
+
+if (highScore === null && initials === null) {
+    scoreDisplay.textContent = "No High Score Data"
+} else {
+    scoreDisplay.textContent = initials + " has the high score of " + highScore
+}
+
+
+
 
 
 timer.textContent = "Time Remaining: " + timeRemaining
 
 startQuiz.addEventListener("click", function() {
     setInterval( function() {
-        if (timeRemaining > 0) {
+        if (timeRemaining > 0 && (QI < questions.length)) {
             timeRemaining--
             timer.textContent = "Time Remaining: " + timeRemaining
         }
         else {
-            clearInterval
-            endQuiz()
+            clearInterval()
         }
     }, 1000)
     Quiz()
 })
+
 
 var Quiz = function() {
     quizArea.innerHTML = ""
@@ -89,7 +101,6 @@ function validate(event) {
         Quiz(QI)
     } else {
         endQuiz()
-        result.textContent = "The quiz is done! You finished with " + timeRemaining + " seconds remaining"
     }
     quizArea.appendChild(result)
 }
@@ -97,20 +108,17 @@ function validate(event) {
 function endQuiz() {
     quizArea.innerHTML= ""
 
-    var createH1 = document.createElement("h1")
-    createH1.setAttribute("id", "createH1")
-    createH1.textContent = "You finished!"
+    var createH2 = document.createElement("h2")
+    createH2.setAttribute("id", "createH2")
+    createH2.textContent = "End Quiz!"
 
-    quizArea.appendChild(createH1)
+    quizArea.appendChild(createH2)
 
     var createP = document.createElement("p")
     createP.setAttribute("id", "createP")
+    createP.textContent = "The quiz is done! You finished with " + timeRemaining + " seconds remaining"
 
     quizArea.appendChild(createP)
-
-    if (timeRemaining > 0) {
-        clearInterval()        
-    }
 
     createLabel = document.createElement("label")
     createLabel.setAttribute("id", "createLabel")
@@ -135,25 +143,20 @@ function endQuiz() {
     createSubmit.addEventListener("click", function() {
         var initials = createInput.value
 
-        while (initials === null) {
+       if (initials === null) {
             alert("You need to enter your initials!")
             var initials = createInput.value
         }
-
-        var finalScore = {
-            initials: initials,
-            score: timeRemaining
+        
+        if (highScore === null) {
+            highScore = 0
         }
 
-        var allScores = localStorage.getItem(allScores)
-        if (allScores === null) {
-            allScores = []
-        } else {
-            allScores = JSON.parse(allscores)
+        if (timeRemaining > highScore) {
+            localStorage.setItem("highScore", timeRemaining)
+            localStorage.setItem("initials", initials)
         }
-        allScores.push(finalScore)
-        var newScore = JSON.stringify(allScores)
-        localStorage.setItem("allScores", newScore)
 
+        
     })
 }
