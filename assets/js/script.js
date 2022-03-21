@@ -35,28 +35,27 @@ var qList = document.createElement("ul")
 var timeDeduct = 5
 var scoreDisplay = document.querySelector("#highScore")
 var highScore = localStorage.getItem("highScore")
-var initials = localStorage.getItem("initials")
+var Name = localStorage.getItem("Name")
 
-if (highScore === null && initials === null) {
+
+if (highScore === null && Name === null) {
     scoreDisplay.textContent = "No High Score Data"
 } else {
-    scoreDisplay.textContent = initials + " has the high score of " + highScore
+    scoreDisplay.textContent = Name + " has the high score of " + highScore
 }
-
-
-
 
 
 timer.textContent = "Time Remaining: " + timeRemaining
 
 startQuiz.addEventListener("click", function() {
-    setInterval( function() {
+    var quizTimer = setInterval( function() {
         if (timeRemaining > 0 && (QI < questions.length)) {
             timeRemaining--
             timer.textContent = "Time Remaining: " + timeRemaining
         }
         else {
-            clearInterval()
+            clearInterval(quizTimer)
+            endQuiz()
         }
     }, 1000)
     Quiz()
@@ -99,8 +98,6 @@ function validate(event) {
 
     if (QI < questions.length) {
         Quiz(QI)
-    } else {
-        endQuiz()
     }
     quizArea.appendChild(result)
 }
@@ -122,13 +119,13 @@ function endQuiz() {
 
     createLabel = document.createElement("label")
     createLabel.setAttribute("id", "createLabel")
-    createLabel.textContent = "Enter your initials"
+    createLabel.textContent = "Enter your Name"
 
     quizArea.appendChild(createLabel)
 
     var createInput = document.createElement("input")
     createInput.setAttribute("type", "text")
-    createInput.setAttribute("id", "initials")
+    createInput.setAttribute("id", "Name")
     createInput.textContent = ""
 
     quizArea.appendChild(createInput)
@@ -141,11 +138,12 @@ function endQuiz() {
     quizArea.appendChild(createSubmit)
 
     createSubmit.addEventListener("click", function() {
-        var initials = createInput.value
+        var Name = createInput.value
+        
 
-       if (initials === null) {
-            alert("You need to enter your initials!")
-            var initials = createInput.value
+       if (Name === null) {
+            alert("You need to enter your Name!")
+            var Name = createInput.value
         }
         
         if (highScore === null) {
@@ -154,9 +152,9 @@ function endQuiz() {
 
         if (timeRemaining > highScore) {
             localStorage.setItem("highScore", timeRemaining)
-            localStorage.setItem("initials", initials)
+            localStorage.setItem("Name", Name)
+        } else {
+            createP.textContent = "You did not beat the high score!"
         }
-
-        
     })
 }

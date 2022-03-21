@@ -31,14 +31,10 @@ header h1 {
     font-size: 35px;
     color:var(--PG) ;
 }
-header:hover {
-    background-color: blueviolet;
-    cursor: pointer;
-}
 /*End Header Styles*/
 
 /*Timer Styles*/
-#Timer {
+#Timer, #highScore {
     color: var(--PG);
     background-color: var(--SB);
     font-size: 22px;
@@ -118,3 +114,26 @@ ul {
     font-size: 18px;
 }
 /*End Quiz Done Styles*/
+
+@media screen and (max-width: 1000px){
+    ul {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 600px){
+    ul li{
+        font-size: 14px;
+    }
+    main h2 {
+        font-size: 18px;
+    }
+    header h1 {
+        font-size: 20px;
+    }
+    #Timer, #highScore {
+        font-size: 18px;
+    }
+    #result {
+        font-size: 14px;
+    }
+}
