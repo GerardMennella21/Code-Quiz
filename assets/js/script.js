@@ -1,3 +1,4 @@
+//Array of questions populated with objects and data for each question
 var questions = [
     {
         question: "What is a pseudo-class?",
@@ -26,6 +27,7 @@ var questions = [
     }
 ]
 
+// Global Variable Declarations
 var timer = document.querySelector("#Timer")
 var timeRemaining = 75
 var startQuiz = document.querySelector("#start")
@@ -37,16 +39,17 @@ var scoreDisplay = document.querySelector("#highScore")
 var highScore = localStorage.getItem("highScore")
 var Name = localStorage.getItem("Name")
 
-
+//If/Else Statment for Displaying High Score
 if (highScore === null && Name === null) {
     scoreDisplay.textContent = "No High Score Data"
 } else {
     scoreDisplay.textContent = Name + " has the high score of " + highScore
 }
 
-
+//Timer display
 timer.textContent = "Time Remaining: " + timeRemaining
 
+//event listener to start the quiz function and the timer
 startQuiz.addEventListener("click", function() {
     var quizTimer = setInterval( function() {
         if (timeRemaining > 0 && (QI < questions.length)) {
@@ -61,7 +64,7 @@ startQuiz.addEventListener("click", function() {
     Quiz()
 })
 
-
+//Quiz Function
 var Quiz = function() {
     quizArea.innerHTML = ""
     qList.innerHTML = ""
@@ -79,6 +82,8 @@ var Quiz = function() {
         qlItem.addEventListener("click", validate)
     })
 }
+
+//Function to check if answer is correct and move the iterator up
 function validate(event) {
     var element = event.target
 
@@ -102,6 +107,7 @@ function validate(event) {
     quizArea.appendChild(result)
 }
 
+//Function to end quiz and capture high score
 function endQuiz() {
     quizArea.innerHTML= ""
 
@@ -153,6 +159,8 @@ function endQuiz() {
         if (timeRemaining > highScore) {
             localStorage.setItem("highScore", timeRemaining)
             localStorage.setItem("Name", Name)
+            createP.textContent = "Congratulations, you beat the high score!"
+            scoreDisplay.textContent = Name + " now has the high score of " + timeRemaining
         } else {
             createP.textContent = "You did not beat the high score!"
         }
